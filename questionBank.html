@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue JS | Task</title>
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="style.css">        
+</head>
+
+<body>
+
+
+    <div id="app">
+        <div class="container">
+            <div class="row mt-5 mb-5">
+                <h1 class="border-bottom pb-2 mb-3 text-center">Questions</h1>
+                <div class="question border shadow"  v-for = "(question,index) in questions" :key='question'>
+                    <h2 class="border-bottom pb-2 mb-3">{{index+=1}}. {{question.name}}</h2>
+                    <div class="answers form-check" v-for="answer in question.answers">
+                        <label :for="answer.title" class="form-check-label">{{answer.title}}</label>
+                        <input type = "radio" name = "answer" :id="answer.title" :value = "answer.title" :data-answer="answer.value" class="form-check-input" /> 
+                    </div>
+                </div>
+                
+            </div> 
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+
+        var questions = [
+            {   
+                name : 'What is capital city of America?',
+                answers : [
+                    {title : 'London', value : false},
+                    {title : 'Ankara', value : false},
+                    {title : 'Baku', value : false},
+                    {title : 'Moscova', value : false},
+                    {title : 'Washington', value : true}
+                ]
+            },
+            {
+                name : 'What is capital city of Netherlands?',
+                answers : [
+                    {title : 'Amsterdam', value : true},
+                    {title : 'Paris', value : false},
+                    {title : 'Istanbul', value : false},
+                    {title : 'Moscova', value : false},
+                    {title : 'Brazil', value : false}
+                ]
+            },
+            {
+                name : 'What is capital city of Uzbekistan?',
+                answers : [
+                    {title : 'Peru', value : false},
+                    {title : 'London', value : false},
+                    {title : 'Tashkent', value : true},
+                    {title : 'Minsk', value : false},
+                    {title : 'Ashgabat', value : false}
+                ]
+            },
+            {
+                name : 'What is capital city of United Kingdom?',
+                answers : [
+                    {title : 'Amsterdam', value : false},
+                    {title : 'Bishkek', value : false},
+                    {title : 'Baku', value : false},
+                    {title : 'London', value : true},
+                    {title : 'Caracas', value : false}
+                ]
+            },
+            {
+                name : 'What is capital city of Venezuela?',
+                answers : [
+                    {title : 'Kyiv', value : false},
+                    {title : 'Paris', value : false},
+                    {title : 'Hanoi', value : false},
+                    {title : 'Bishkek', value : false},
+                    {title : 'Caracas', value : true}
+                ]
+            },
+        ];
+
+        const App = {
+            data() {
+                return {
+                    questions : questions,
+                    right_answers : 0,
+                    wrong_answers : 0,
+                    not_answered : 0,
+
+                }
+            }
+        }
+
+        Vue.createApp(App).mount('#app')
+
+    </script>
+</body>
+
+</html>

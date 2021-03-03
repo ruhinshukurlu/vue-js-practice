@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue JS | Task</title>
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="style.css">        
+</head>
+
+<body>
+
+
+    <div id="app">
+        <div class="container">
+            <div class="row mt-5 mb-5">
+                <h1 class="border-bottom pb-2 mb-3 text-center">Calculator</h1>
+                
+                <div class="calculator">
+                    <div class="row">
+                        <label class="col-12 mb-3 bold" for="">Select Operation for applying on two numbers</label>
+                        <select class="form-select col-8" aria-label="Default select example" v-model='operation'>
+                            <option value="+">Summation</option>
+                            <option value="-">Subtracting</option>
+                            <option value="*">Multiplication</option>
+                            <option value="/">Division</option>
+                        </select>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-2">
+                            <input type="number" class="form-control" name="num1" id="num1" v-model.number='num1' >
+                        </div>
+                        <div class="col-1 justify-content-center d-flex align-items-center">
+                            <span class="bold">{{operation}}</span>
+                        </div>
+                        <div class="col-2">
+                            <input type="number" class="form-control" name="num1" id="num1" v-model.number='num2' >
+                        </div>
+                        <div class="col-1 justify-content-center d-flex align-items-center">
+                            <span v-if="operation=='+'" class="bold">= &nbsp&nbsp&nbsp {{num1 + num2}}</span>
+                            <span v-else-if="operation=='-'" class="bold">= &nbsp&nbsp&nbsp {{num1 - num2}}</span>
+                            <span v-else-if="operation=='*'" class="bold">= &nbsp&nbsp&nbsp {{num1 * num2}}</span>
+                            <span v-else-if="operation=='/'" class="bold">= &nbsp&nbsp&nbsp {{num1 / num2}}</span>
+
+                        </div>
+                    </div>
+                </div>
+                
+            </div> 
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+
+      
+        const App = {
+            data() {
+                return {
+                    operation : '+',
+                    num1 : 0,
+                    num2 : 0
+
+                }
+            }
+        }
+
+        Vue.createApp(App).mount('#app')
+
+    </script>
+</body>
+
+</html>

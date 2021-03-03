@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue JS | Hello World</title>
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+    <div id="app">
+        <div class="container">
+            <div class="row mt-5">
+
+                <h3>V-model usage</h3>
+                <input type="text" class="form-control" v-model='message'>
+                <p>Message : {{message}}</p>
+
+
+                <h3>V-model usage</h3>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Ruhin" id="check1" v-model='checkedNames'>
+                    <label class="form-check-label" for="check1">
+                        Ruhin
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Murad" id="check2" v-model='checkedNames'>
+                    <label class="form-check-label" for="check2">
+                        Murad
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Sara" id="check3" v-model='checkedNames'>
+                    <label class="form-check-label" for="check3">
+                        Sara
+                    </label>
+                </div>
+
+                <p>Checked Names : {{checkedNames}}</p>
+
+                <hr>
+                <hr>
+
+                
+
+                <h3>If-Else</h3>
+
+                <p>Do you like Vue Js?</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" v-model='liked' value="yes"
+                        id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Yes
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" v-model='liked' value="no"
+                        id="flexRadioDefault2">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        No
+                    </label>
+                </div>
+
+                <section class="m-3">
+                    <h4 v-if="liked==='yes'" class="text-center"> Great :)</h4>
+                    <h4 v-else-if="liked === 'no'" class="text-center">Oooh noo :(</h4>
+                </section>
+
+                <hr><hr>
+
+                <h3>For loop</h3>
+                <div class="form-check" v-for='option in options'>
+                    <input class="form-check-input" type="checkbox" :value="option.val" :id="option.val"
+                        v-model='checkedNamesForLoop'>
+                    <label class="form-check-label" :for="option.val">
+                        {{option.val}}
+                    </label>
+                </div>
+
+                <p>Checked Names : {{checkedNamesForLoop}}</p>
+
+                <h5>Key in for loop</h5>
+
+                <ul>
+                    <li v-for="num in 10">{{num}}</li>
+                </ul>
+                <hr>
+                <hr>
+
+                <h3>Events</h3>
+
+                <div class="row m-5">
+                    <div class="box" @mouseenter='hover=true' @mouseleave='hover = false' :class="{ round:hover }"></div>
+                </div>
+            </div>  
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+        const App = {
+            data() {
+                return {
+                    message: '',
+                    checkedNames: [],
+                    checkedNamesForLoop: [],
+                    options: [
+                        { val: 'Ruhin' },
+                        { val: 'Murad' },
+                        { val: 'Sara' },
+                        { val: 'Elnur' },
+                    ],
+                    liked: '',
+                    hover : false
+                }
+            }
+        }
+
+        Vue.createApp(App).mount('#app')
+
+    </script>
+</body>
+
+</html>
