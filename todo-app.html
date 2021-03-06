@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue JS | Task</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+
+    <div id="app">
+        <div class="container mt-5">
+            <h1 class="border-bottom pb-2 mb-3 text-center">Todo App</h1>
+
+            <div class="row mt-5 mb-5 bg-white shadow p-3">
+                <form @submit.prevent="addTodo">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Todo Title</label>
+                        <input type="text" v-model="title" class="form-control" id="title" required placeholder="Add task title here...">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description (Optional)</label>
+                        <textarea v-model="description" class="form-control" id="description" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3 d-flex justify-content-end">
+                        <input type="submit" value="Add Task" class="btn btn-outline-success">
+                    </div>
+                </form>
+            </div>
+
+            <div class="row">
+                <h3 class="border-bottom pb-2 mb-3 ">
+                    <i class="fas fa-tasks mr-2"></i>
+                    Your Todos
+                </h3>
+
+                <div class="task-item" v-for="todo in todos">
+                    <div v-if="! todo.completed"  class="row bg-white shadow mb-5">
+                        <div  class="col-12 d-flex justify-content-between p-3 align-items-center">
+                            <span>{{todo.title}}</span>
+                            <div class="d-flex align-items-center">
+                                <button @click="deleteTask(todo)" class="delete-btn btn btn-outline-danger align-items-center d-flex">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+    
+                                <button @click="completeTask(todo)" class="btn btn-outline-success delete-btn"> 
+                                    <i class="far fa-check-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+    
+                        <div class="row">
+                            <span class="border-bottom pb-2 mb-3">Description</span>
+                            <p>
+                                {{todo.description}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <hr>
+            <hr>
+            <div class="row">
+                <h3 class="border-bottom pb-2 mb-3 ">
+                    <i class="fas fa-tasks mr-2"></i>
+                    Completed Tasks
+                </h3>
+                <div class="task-item" v-for="todo in todos">
+                    <div  v-if="todo.completed"   class="row bg-white shadow mb-5  task-item">
+                        <div class="col-12 d-flex justify-content-between p-3 align-items-center">
+                            <span>{{todo.title}}</span>
+                            <div class="d-flex align-items-center">
+                                <button @click="deleteTask(todo)" class="delete-btn align-items-center d-flex btn btn-outline-danger">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+
+                                <button  v-if="! todo.completed" class="btn btn-outline-success delete-btn">
+                                    <i class="far fa-check-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <span class="border-bottom pb-2 mb-3">Description</span>
+                            <p>
+                                {{todo.description}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+
+
+        const App = {
+            data() {
+                return {
+                    title : '',
+                    description : '',
+                    completed : false,
+                    todos : [
+                        {
+                            title : 'Task Title 1',
+                            description : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,',
+                            completed : false
+                        },
+                        {
+                            title : 'Task Title 2',
+                            description : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,',
+                            completed : false
+                        },
+                        {
+                            title : 'Task Title 3',
+                            description : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,',
+                            completed : true
+                        },
+                        {
+                            title : 'Task Title 4',
+                            description : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,',
+                            completed : false
+                        },
+                        {
+                            title : 'Task Title 5',
+                            description : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,',
+                            completed : true
+                        },
+                        
+                    ]
+                }
+            },
+            methods : {
+                addTodo(){
+                    todo = {
+                        title : this.title,
+                        description : this.description
+                    }
+                    this.todos.unshift(todo)
+                    this.title = ''
+                    this.description = ''
+                },
+                deleteTask(todo){
+                    delted_task = this.todos.indexOf(todo)
+                    this.todos.splice(delted_task,1)
+                },
+                completeTask(todo){
+                    completed_task_index = this.todos.indexOf(todo)
+                    this.todos[completed_task_index].completed=true
+                }
+            }
+        }
+
+        Vue.createApp(App).mount('#app')
+
+    </script>
+</body>
+
+</html>

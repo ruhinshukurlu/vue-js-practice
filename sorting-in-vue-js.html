@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue JS | Task</title>
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="assets/css/style.css">        
+
+</head>
+
+<body>
+
+
+    <div id="app">
+        <div class="container">
+            <div class="row mt-5 mb-5">
+                <h1 class="border-bottom pb-2 mb-3 text-center">Sorting | Vue Js</h1>
+
+                <div class="row">
+                    <h3 class="full border-bottom pb-2 mb-3 ">Sort by rating</h3>
+                    <button @click="ascendingOrder" class="btn btn-outline-secondary mb-3">Ascending</button>
+                    <button @click="descendingOrder" class="btn btn-outline-secondary mb-3">Descending</button>
+                </div>
+
+                <div class="row">
+                    <h3 class="full border-bottom pb-2 mb-3 ">Film titles and ratings (Testing)</h3>
+
+                    <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th v-for="key in columns" scope="col">{{key}}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="film in films">
+                            <td v-for="key in columns">
+                                {{film[key]}}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+
+
+        const App = {
+            data() {
+                return {
+                    columns : ['title','rating'],
+                    films : [
+                        { title : 'test 1', rating : 82 },
+                        { title : 'test 2', rating : 81 },
+                        { title : 'test 3', rating : 83 },
+                        { title : 'test 4', rating : 50 },
+                        { title : 'test 5', rating : 92},
+                        { title : 'test 6', rating : 95 },
+                        { title : 'test 7', rating : 82 },
+                        { title : 'test 8', rating : 80 },
+                        { title : 'test 9', rating : 62 },
+                        { title : 'test 10', rating : 52 },
+                        { title : 'test 11', rating : 42 },
+                        { title : 'test 12', rating : 89 },
+                        { title : 'test 13', rating : 45 },
+                        { title : 'test 14', rating : 56 },
+                        { title : 'test 15', rating : 67 },
+                        { title : 'test 16', rating : 12 },
+                        { title : 'test 17', rating : 100 },
+                        { title : 'test 18', rating : 97 },
+                    ]
+                }
+            },
+            methods : {
+                ascendingOrder(){
+                    this.films.sort((a,b)=> a.rating > b.rating ? 1 : -1)
+                },
+                descendingOrder(){
+                    this.films.sort((a,b)=> a.rating < b.rating ? 1 : -1)
+                }
+            }
+        }
+
+        Vue.createApp(App).mount('#app')
+
+    </script>
+</body>
+
+</html>
