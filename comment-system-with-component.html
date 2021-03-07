@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue JS | Task</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        img{
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="app">
+        <div class="container">
+            <div class="row mt-5 mb-5">
+                
+                <div class="row mb-5 border-bottom pb-3">
+                    <div class="col-12 mb-3">
+                        <img src="https://www.pixelstalk.net/wp-content/uploads/2016/08/HD-Log-Cabin-Images.jpg" alt="" class="blog-img">
+                    </div>
+                    <div class="col-12 ">
+                        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3 ">
+                            <h3 class="bold">Blog Title 1</h3>
+                            <span>
+                                <i class="far fa-calendar-alt mr-1"></i>
+                                12-02-2021 23:34 PM
+                            </span>
+                        </div>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a consequuntur rem
+                            eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                            voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                            consequuntur rem
+                            eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                            voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                            consequuntur rem
+                            eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                            voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                            consequuntur rem</p>
+                    </div>
+                </div>
+
+                <div class="row mb-5">
+                    <div class="row justify-content-center">
+                        <div class="col-md-2 col-12 d-flex justify-content-center align-items-center">
+                            <img src="assets/images/chat.svg" alt="" class="messgae-icon">
+                        </div>
+                        <div class="col-md-8 col-12 ">
+                            <form @submit.prevent="addComment">
+                                <div class="mb-3 row">
+                                    <div class="col-6">
+                                        <label for="name" class="form-label">First Name</label>
+                                        <input type="text" v-model = 'author_name' class="form-control" id="name" >
+                                    </div> 
+                                    <div class="col-6">
+                                        <label for="last_name" class="form-label">Last Name</label>
+                                        <input type="text" v-model = 'author_surname' class="form-control" id="last_name" >
+                                    </div>      
+                                </div>  
+                                
+                                <div class="form-group">
+                                    <textarea name="message" v-model = 'text' class="form-control"  rows="5"></textarea>
+                                </div>
+                                <div class="form-group mt-3 justify-content-end d-flex">
+                                    <input type="submit" class="btn btn-outline-success"  value="Post Comment">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="row mt-5">
+                        <h3 class="border-bottom mb-5 pb-3">What {{ comments.length }} people say about this blog</h3>
+                        <Comment v-for="comment in comments" :author_name='comment.author_name' :author_surname = 'comment.author_surname' :text='comment.text' />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script type="text/x-template" id="Comment">
+        <div class="row mb-5 border-bottom pb-3">
+            <div class="col-1">
+                <img  src="https://st3.depositphotos.com/13159112/17145/v/600/depositphotos_171453724-stock-illustration-default-avatar-profile-icon-grey.jpg" alt="">
+            </div>
+            <div class="col-9">
+                <h5 class="border-bottom pb-2 mb-3">
+                    {{author_name}} {{author_surname}} says
+                </h5>
+                <p>{{text}}</p>
+            </div>
+        </div>
+    </script>
+
+    <script>
+
+        const app = Vue.createApp({
+            data() {
+                return {
+                    author_name : '',
+                    author_surname : '',
+                    text : '',
+                    comments : [
+                        {
+                            author_name : 'Ruhin',
+                            author_surname : 'Shukurlu',
+                            text : 'new comment 1'
+                        },
+                        {
+                            author_name : 'Murad',
+                            author_surname : 'Mammadli',
+                            text : 'new comment 2'
+                        },
+                        {
+                            author_name : 'Vasif',
+                            author_surname : 'Abdullayev',
+                            text : 'new comment 3'
+                        },
+                        {
+                            author_name : 'Ruhid',
+                            author_surname : 'Shukurlu',
+                            text : 'new comment 4'
+                        },
+                        {
+                            author_name : 'Ruhin',
+                            author_surname : 'Shukurlu',
+                            text : 'new comment 5'
+                        }
+                    ]
+                }  
+            },
+            methods : {
+                addComment : function(){
+                    let comment = {
+                        author_name : this.author_name,
+                        author_surname : this.author_surname,
+                        text : this.text
+                    }
+
+                    this.comments.unshift(comment)
+                    this.author_name = ''
+                    this.author_surname = ''
+                    this.text = ''
+
+                }
+            }
+
+        })
+        
+        app.component('Comment',{
+            props : ['author_name', 'author_surname', 'text'],
+            template : '#Comment',
+        })
+
+        app.mount('#app')
+
+    </script>
+
+   
+
+</body>
+
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue JS | Task</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        .blog-img{
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="app">
+        <div class="container">
+            <div class="row mt-5 mb-5">
+                <h1 class="border-bottom pb-2 mb-5 text-center">Our Blogs</h1>
+                <Blog v-for="blog in blogs" :img='blog.img' :title='blog.title' :text='blog.text' :written_at="blog.written_at"></Blog>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script type="text/x-template" id="Blog">
+        <div class="row mb-5 border-bottom pb-3">
+            <div class="col-12 col-md-6">
+                <img :src="img" alt="" class="blog-img">
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3 ">
+                    <h3 class="bold">{{title}}</h3>
+                    <span>
+                        <i class="far fa-calendar-alt mr-1"></i>
+                        {{written_at}}
+                    </span>
+                </div>
+                <p>{{text}}</p>
+            </div>
+        </div>
+    </script>
+
+    <script>
+
+        const app = Vue.createApp({
+            data() {
+                return {
+                    blogs : [
+                        {
+                            title : ' Blog Title 1',
+                            text : `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam`,
+                            img : 'https://www.pixelstalk.net/wp-content/uploads/2016/08/HD-Log-Cabin-Images.jpg',
+                            written_at : '12-02-2021 23:34 PM'
+                        },
+                        {
+                            title : ' Blog Title 2',
+                            text : `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam`,
+                            img : 'https://www.pixelstalk.net/wp-content/uploads/2016/08/Log-Cabin-HD-Image-1.jpg',
+                            written_at : '12-02-2021 23:34 PM'
+                        },
+                        {
+                            title : ' Blog Title 3',
+                            text : `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam`,
+                            img : 'https://www.itl.cat/pngfile/big/291-2914419_log-cabin-wallpaper-wood-cabin-in-the-woods.jpg',
+                            written_at : '12-02-2021 23:34 PM'
+                        },
+                        {
+                            title : ' Blog Title 4',
+                            text : `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam`,
+                            img : 'https://coolwallpapers.me/picsup/6123874-wate-ocean-beach-sunset-sky-clouds-sea-log-driftwood-sand.jpg',
+                            written_at : '12-02-2021 23:34 PM'
+                        },
+                        {
+                            title : ' Blog Title 5',
+                            text : `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam`,
+                            img : 'https://www.wallpaperbetter.com/wallpaper/314/726/551/logs-trees-forest-hd-2K-wallpaper.jpg',
+                            written_at : '12-02-2021 23:34 PM'
+                        },
+                        
+                    ]
+                }  
+            }
+
+        })
+        
+        app.component('Blog',{
+            props : ['img', 'title', 'text', 'written_at'],
+            template : '#Blog',
+        })
+
+        app.mount('#app')
+
+    </script>
+
+   
+
+</body>
+
+</html>
