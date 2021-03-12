@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue JS | Task</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        .blog-img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="app">
+        <header class="full border-bottom bg-white">
+            <div class="row justify-content-center p-3">
+                <div class="col-4">
+                    <nav>
+                        <ul class="d-flex justify-content-between m-0">
+                            <li v-for = 'tab in tabs' >
+                                <button @click='currentTab = tab' 
+                                :class="['tab-button', { active: currentTab === tab }]"
+                                class="btn btn-outline-secondary" >{{tab}}</button>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div> 
+        </header>
+
+        <div class="container">
+            <div class="row mt-5">
+                <keep-alive>
+                    <component :is="getCurrentTab"> </component>
+                </keep-alive>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <!-- Home Component -->
+    <script type="text/x-template" id="home">
+        <h1>Home</h1>
+    </script>
+    <!-- end Home -->
+
+
+    <!-- Blogs Component -->
+    <script type="text/x-template" id="blogs">
+
+        <div class="row mb-5">
+            <div class="d-flex">
+                <button class='btn btn-outline-success m-2' 
+                v-for='blog in blogs'
+                :class="[{'active': selectedBlog === blog}]"
+                @click='selectedBlog = blog'>{{blog.title}}</button>
+            </div>
+        </div>
+
+        <div class="row mb-5 border-bottom pb-3" v-if='selectedBlog'>
+            <div class="col-12 col-md-6">
+                <img :src="selectedBlog.img" alt="" class="blog-img">
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3 ">
+                    <h3 class="bold">{{selectedBlog.title}}</h3>
+                    <span>
+                        <i class="far fa-calendar-alt mr-1"></i>
+                        {{selectedBlog.written_at}}
+                    </span>
+                </div>
+                <p>{{selectedBlog.text}}</p>
+            </div>
+        </div>
+
+        <div class="row" v-else>
+            <h3>Select which blog do you want to read :)</h3>
+        </div>
+    </script>
+    <!-- end blogs -->
+
+
+    <!-- About Component -->
+    <script type="text/x-template" id="about">
+        <h1>About</h1>
+    </script>
+    <!-- End About Component -->
+
+
+    <!-- Contact Component -->
+    <script type="text/x-template" id="contact">
+        <h1>Contact</h1>
+    </script>
+    <!-- End Contact Component -->
+
+    <script>
+
+        const app = Vue.createApp({
+            data() {
+                return {
+                    currentTab : 'Home',
+                    tabs : ['Home', 'Blogs', 'About','Contact']
+                }
+            },
+            computed : {
+                getCurrentTab() {
+                    return 'tab-'+this.currentTab.toLowerCase()
+                }
+            }
+        })
+
+        app.component('tab-home',{
+            template : '#home'
+        })
+
+        app.component('tab-about',{
+            template : '#about'
+        })
+
+        app.component('tab-blogs',{
+            template : '#blogs',
+            data() {
+                return {
+                    selectedBlog : null,
+                    blogs : [
+                        {
+                            title : ' Blog Title 1',
+                            text : `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam`,
+                            img : 'https://www.pixelstalk.net/wp-content/uploads/2016/08/HD-Log-Cabin-Images.jpg',
+                            written_at : '12-02-2021 23:34 PM'
+                        },
+                        {
+                            title : ' Blog Title 2',
+                            text : `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam`,
+                            img : 'https://www.pixelstalk.net/wp-content/uploads/2016/08/Log-Cabin-HD-Image-1.jpg',
+                            written_at : '12-02-2021 23:34 PM'
+                        },
+                        {
+                            title : ' Blog Title 3',
+                            text : `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam`,
+                            img : 'https://www.itl.cat/pngfile/big/291-2914419_log-cabin-wallpaper-wood-cabin-in-the-woods.jpg',
+                            written_at : '12-02-2021 23:34 PM'
+                        },
+                        {
+                            title : ' Blog Title 4',
+                            text : `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam`,
+                            img : 'https://coolwallpapers.me/picsup/6123874-wate-ocean-beach-sunset-sky-clouds-sea-log-driftwood-sand.jpg',
+                            written_at : '12-02-2021 23:34 PM'
+                        },
+                        {
+                            title : ' Blog Title 5',
+                            text : `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam
+                                    voluptatibus illum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse adipisci a
+                                    consequuntur rem
+                                    eaque neque quia, non autem unde ipsam odit quas ab ea quidem blanditiis! Nisi magnam`,
+                            img : 'https://www.wallpaperbetter.com/wallpaper/314/726/551/logs-trees-forest-hd-2K-wallpaper.jpg',
+                            written_at : '12-02-2021 23:34 PM'
+                        },
+                        
+                    ]
+                }
+            }
+        })
+
+        app.component('tab-contact',{
+            template : '#contact'
+        })
+
+        app.mount('#app')
+
+    </script>
+
+
+
+</body>
+
+</html>

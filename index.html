@@ -15,20 +15,46 @@
 
         <link rel="stylesheet" href="assets/css/style.css">        
 
+   <style>
+        body{
+            background: url(https://vueschool.io/articles/wp-content/uploads/2018/01/vuejs-course.png) no-repeat;
+            background-size: cover;
+        }
+        h1{
+            color: aliceblue;
+        }
+
+        .row{
+            border-radius: 10px;
+        }
+        .vue-logo{
+            border-radius: 10px;
+        }
+   </style>
+    
 </head>
 
 <body>
 
     <div class="container mt-5">
-        <div class="row">
-            <a href="practice.html" class="btn btn-outline-primary mb-2">All Video Practices</a>
+        <div class="d-column full align-items-center">
+            <h1 class="border-bottom pb-2 mb-3 text-center bold">
+                Welcome To Vue Js Practices
+            </h1>
+            <img src="https://pbs.twimg.com/profile_images/752518047785680896/UDRhCmtb.jpg" class="mb-3 shadow vue-logo" width="200px" alt="">
+            
+        </div>
+        <div class="row bg-white border p-5 shadow m-2">
+            <a href="practice.html" class="btn btn-outline-primary mb-2">Basic Vue Practices</a>
             <a href="questionBank.html" class="btn btn-outline-primary mb-2">Simple Question Bank app</a>
             <a href="calculator-task.html" class="btn btn-outline-primary mb-2">Vue Js Calculator</a>
             <a href="sorting-in-vue-js.html" class="btn btn-outline-primary mb-2">Sorting Vue Js</a>
             <a href="todo-app.html" class="btn btn-outline-primary mb-2">Todo App</a>
             <a href="component-props.html" class="btn btn-outline-primary mb-2">Component & Props Practice 1</a>
             <a href="comment-system-with-component.html" class="btn btn-outline-primary mb-2">Component & Props Practice 2</a>
-
+            <a href="slot-practice-1.html" class="btn btn-outline-primary mb-2">Slot Practice 1</a>
+            <a href="slot-practice-2.html" class="btn btn-outline-primary mb-2">Slot Practice 2 | v-slot</a>
+            <a href="dynamic-components.html" class="btn btn-outline-primary mb-2">Dynamic Components | Keep Alive</a>
         </div>
     </div>
 </body>

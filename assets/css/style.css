@@ -61,3 +61,36 @@ body{
 .task-item span{
     font-weight: bold;
 }
+
+.d-column{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.full-w{
+    width: 100%;
+}
+
+.custom-modal{
+    width: 400px;
+    background-color: aqua;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    position: relative;
+    margin: auto;
+}
+
+.modal-container{
+    position: fixed;
+    top: 200px;
+    width: 100%;
+    left: 0;
+    background-color: rgba(0,0,0,0.6);
+    padding: 20px;
+}
+
+.blog-img{
+    height: 400px;
+    object-fit: cover;
+}

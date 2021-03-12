@@ -27,10 +27,16 @@
             <div class="row mt-5 mb-5">
                 <h1 class="border-bottom pb-2 mb-3 text-center">Sorting | Vue Js</h1>
 
+
                 <div class="row">
                     <h3 class="full border-bottom pb-2 mb-3 ">Sort by rating</h3>
                     <button @click="ascendingOrder" class="btn btn-outline-secondary mb-3">Ascending</button>
                     <button @click="descendingOrder" class="btn btn-outline-secondary mb-3">Descending</button>
+                </div>
+                
+                <div class="row">
+                    <h3 class="full border-bottom pb-2 mb-3 ">Sort by rating</h3>
+                    <input type="text" v-model='search' class="form-control">    
                 </div>
 
                 <div class="row">
@@ -63,6 +69,7 @@
         const App = {
             data() {
                 return {
+                    search : '',
                     columns : ['title','rating'],
                     films : [
                         { title : 'test 1', rating : 82 },
@@ -92,6 +99,12 @@
                 },
                 descendingOrder(){
                     this.films.sort((a,b)=> a.rating < b.rating ? 1 : -1)
+                }
+            },
+            computed : {
+                searchFilter(){
+                    let filter = new RegExp(this.search, 'i')
+                    return this.films.filter(el => el.title.match(filter))
                 }
             }
         }
